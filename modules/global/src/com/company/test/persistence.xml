@@ -6,6 +6,6 @@
         <class>com.company.test.entity.Contact</class>
         <class>com.company.test.entity.Order</class>
         <class>com.company.test.entity.Product</class>
-        <class>com.company.test.entity.TestingEntity</class>
+        <class>com.company.test.entity.Person</class>
     </persistence-unit>
 </persistence>
