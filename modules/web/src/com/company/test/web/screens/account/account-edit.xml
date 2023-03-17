@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://accountEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.test.web.screens.account">
+    <data>
+        <instance id="accountDc"
+                  class="com.company.test.entity.Account">
+            <view extends="_local">
+                <property name="avatar" view="_minimal"/>
+                <property name="contactsList" view="_minimal">
+                    <property name="contactValue"/>
+                    <property name="contactType"/>
+                </property>
+            </view>
+            <loader/>
+            <collection id="contactDc" property="contactsList" />
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="accountDc">
+            <column width="350px">
+                <textField id="firstNameField" property="firstName"/>
+                <textField id="middleNameField" property="middleName"/>
+                <textField id="lastNameField" property="lastName"/>
+                <upload id="avatarField" fileStoragePutMode="IMMEDIATE" property="avatar" showFileName="true"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+
+        <groupTable dataContainer="contactDc" id="contactsTable">
+            <actions>
+                <action id="create" type="create" />
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="contactValue"/>
+                <column id="contactType"/>
+            </columns>
+            <buttonsPanel id="buttonsPanel" alwaysVisible="true">
+                <button id="createBtn" action="contactsTable.create">Create</button>
+                <button id="editBtn" action="contactsTable.edit">Edit</button>
+                <button id="removeBtn" action="contactsTable.remove">Remove</button>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

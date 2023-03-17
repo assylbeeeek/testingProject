@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://orderEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.test.web.screens.order">
+    <data>
+        <instance id="orderDc"
+                  class="com.company.test.entity.Order">
+            <view extends="_local">
+                <property name="account" view="_minimal"/>
+                <property name="products" view="_local">
+                </property>
+            </view>
+            <collection id="productsDc" property="products"/>
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="orderDc">
+            <column width="350px">
+                <dateField id="dateField" property="date"/>
+                <pickerField id="accountField" property="account">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
+                <textField id="amountField" property="amount"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+        <groupTable id="productsTable"
+                        width="100%"
+                        dataContainer="productsDc">
+                <actions>
+                    <action id="create" type="create"/>
+                    <action id="edit" type="edit"/>
+                    <action id="remove" type="remove"/>
+                </actions>
+                <columns>
+                    <column id="name"/>
+                    <column id="price"/>
+                    <column id="quantity"/>
+                </columns>
+                <rowsCount/>
+                <buttonsPanel id="buttonsPanel"
+                              alwaysVisible="true">
+                    <button id="createBtn" action="productsTable.create"/>
+                    <button id="editBtn" action="productsTable.edit"/>
+                    <button id="removeBtn" action="productsTable.remove"/>
+                </buttonsPanel>
+            </groupTable>
+    </layout>
+</window>
