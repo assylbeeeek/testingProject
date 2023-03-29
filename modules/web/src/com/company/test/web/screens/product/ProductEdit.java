@@ -13,23 +13,23 @@ import javax.inject.Inject;
 @EditedEntityContainer("productDc")
 @LoadDataBeforeShow
 public class ProductEdit extends StandardEditor<Product> {
-    private Order order;
-
-    @Subscribe
-    public void onInitEntity(InitEntityEvent<Product> event) {
-        this.order = event.getEntity().getOrder();
-    }
-
-    @Inject
-    private TextField<Double> priceField;
-    @Inject
-    private TextField<Double> quantityField;
-
-    @Subscribe
-    public void onAfterClose(AfterCloseEvent event) {
-        Double res = priceField.getValue() * quantityField.getValue();
-        this.order.setAmountFromProductEdit(res);
-    }
+//    private Order order;
+//
+//    @Subscribe
+//    public void onInitEntity(InitEntityEvent<Product> event) {
+//        this.order = event.getEntity().getOrder();
+//    }
+//
+//    @Inject
+//    private TextField<Double> priceField;
+//    @Inject
+//    private TextField<Double> quantityField;
+//
+//    @Subscribe
+//    public void onAfterClose(AfterCloseEvent event) {
+//        Double res = priceField.getValue() * quantityField.getValue();
+//        this.order.setAmountFromProductEdit(res);
+//    }
 
 
 }

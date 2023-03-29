@@ -64,9 +64,9 @@ create table TEST_PRODUCT (
     DELETE_TS timestamp,
     DELETED_BY varchar(50),
     --
-    NAME varchar(255),
-    QUANTITY double precision,
-    PRICE double precision,
+    NAME varchar(255) not null,
+    QUANTITY double precision not null,
+    PRICE double precision not null,
     DESCRIPTION varchar(255),
     IMAGE_ID uuid,
     ORDER_ID uuid,

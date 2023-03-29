@@ -3,22 +3,28 @@ package com.company.test.entity;
 import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.FileDescriptor;
 import com.haulmont.cuba.core.entity.StandardEntity;
+import com.haulmont.cuba.core.entity.annotation.PublishEntityChangedEvents;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
+@PublishEntityChangedEvents
 @Table(name = "TEST_PRODUCT")
 @Entity(name = "test_Product")
 @NamePattern("%s|name")
 public class Product extends StandardEntity {
     private static final long serialVersionUID = -6000426574155447300L;
 
-    @Column(name = "NAME")
+    @Column(name = "NAME", nullable = false)
+    @NotNull
     private String name;
 
-    @Column(name = "QUANTITY")
+    @Column(name = "QUANTITY", nullable = false)
+    @NotNull
     private Double quantity;
 
-    @Column(name = "PRICE")
+    @Column(name = "PRICE", nullable = false)
+    @NotNull
     private Double price;
 
     @Column(name = "DESCRIPTION")

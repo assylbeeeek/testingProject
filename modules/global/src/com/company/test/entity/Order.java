@@ -1,15 +1,17 @@
 package com.company.test.entity;
 
 import com.haulmont.cuba.core.entity.StandardEntity;
-import jdk.nashorn.internal.runtime.options.Option;
+import com.haulmont.cuba.core.entity.annotation.PublishEntityChangedEvents;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@PublishEntityChangedEvents
 @Table(name = "TEST_ORDERS")
 @Entity(name = "test_Orders")
+
 public class Order extends StandardEntity {
     private static final long serialVersionUID = 5051661222363670823L;
 
@@ -23,7 +25,7 @@ public class Order extends StandardEntity {
     private Account account;
 
     @Column(name = "AMOUNT")
-    private Double amount = Double.valueOf(0);
+    private Double amount = 0d;
 
     @OneToMany(mappedBy = "order")
     private List<Product> products;
@@ -50,10 +52,6 @@ public class Order extends StandardEntity {
 
     public void setAmount(Double amount) {
         this.amount = amount;
-    }
-
-    public void setAmountFromProductEdit(Double amount) {
-        this.amount = this.amount + amount;
     }
 
     public LocalDateTime getDate() {

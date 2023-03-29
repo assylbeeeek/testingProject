@@ -9,8 +9,6 @@ import com.haulmont.cuba.gui.components.Action;
 import com.haulmont.cuba.gui.model.CollectionLoader;
 import com.haulmont.cuba.gui.screen.*;
 import com.company.test.entity.Order;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import java.time.LocalDateTime;
@@ -21,7 +19,6 @@ import java.util.List;
 @LookupComponent("ordersTable")
 @LoadDataBeforeShow
 public class OrderBrowse extends StandardLookup<Order> {
-    private static final Logger log = LoggerFactory.getLogger(OrderBrowse.class);
     private Account account;
 
     @Inject
@@ -43,7 +40,6 @@ public class OrderBrowse extends StandardLookup<Order> {
 
     @Install(to = "ordersDl", target = Target.DATA_LOADER)
     private List<Order> ordersDlLoadDelegate(LoadContext<Order> loadContext) {
-        log.info(loadContext.getQuery().getQueryString());
         loadContext.setQuery(LoadContext.createQuery("select u from test_Orders u where u.account = :account")
                 .setParameter("account", this.account));
         view = loadContext.getView();
@@ -58,6 +54,4 @@ public class OrderBrowse extends StandardLookup<Order> {
                 .show()
                 .addAfterCloseListener((e) -> ordersDl.load());
     }
-
-
 }

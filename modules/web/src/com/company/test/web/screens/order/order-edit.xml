@@ -8,11 +8,10 @@
                   class="com.company.test.entity.Order">
             <view extends="_local">
                 <property name="account" view="_minimal"/>
-                <property name="products" view="_local">
-                </property>
+                <property name="products" view="_local"/>
             </view>
             <collection id="productsDc" property="products"/>
-            <loader/>
+            <loader id="test"/>
         </instance>
     </data>
     <dialogMode height="600"
@@ -38,7 +37,7 @@
                         width="100%"
                         dataContainer="productsDc">
                 <actions>
-                    <action id="create" type="create"/>
+                    <action id="create" type="create" />
                     <action id="edit" type="edit"/>
                     <action id="remove" type="remove"/>
                 </actions>
